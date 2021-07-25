@@ -13,7 +13,6 @@ public class Page262 {
 
         for(int i=0;i<edge;i++){
             
-            
         }
     }
 }
