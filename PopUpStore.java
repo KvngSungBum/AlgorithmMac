@@ -17,9 +17,6 @@ public class PopUpStore {
         }
         sc.close();
 
-        int x_pos =0;//시작 좌표 입력
-        int y_pos =0;//시작 좌표 입력
-        int k=0;
         dp[0][0] = map[0][0];
         for(int i=0;i<n;i++){
             for(int j=0;j<m;j++){
