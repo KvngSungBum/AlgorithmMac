@@ -1,13 +1,14 @@
 import java.util.*;
+import java.math.*;
 
 public class PopUpStore {
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        int m = sc.nextInt();//가로
+        int n = sc.nextInt();//세로
         int[][] map = new int[n][m];
         //다이나믹 프로그래밍
-        int[] dp = new int[n*m];
+        int[][] dp = new int[n][m];
 
         for(int i=0;i<n;i++){
             for(int j=0; j<m;j++){
@@ -17,17 +18,33 @@ public class PopUpStore {
         }
         sc.close();
 
-        int max=0;
+        int x_pos =0;//시작 좌표 입력
+        int y_pos =0;//시작 좌표 입력
         int k=0;
-        int pos_x=0, pos_y=0;
-        while(pos_x<n && pos_y<m){
-            dp[k] = map[pos_x][pos_y];
-            if(map[pos_x][pos_y+1]>map[pos_x+1][pos_y]){
-                pos_y++;
-            }else{
-                pos_x++;
+        dp[0][0] = map[0][0];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(i==0&&j==0)
+                    dp[i][j] = map[i][j];
+                else if(i<n&& i >=0 && j>=0 && j<m){
+                    if(j==0){
+                        dp[i][j] = dp[i-1][j] + map[i][j];
+                    }
+                    else if(i==0){
+                        dp[i][j] = dp[i][j-1] +map[i][j];
+                    }
+                    else{
+                        dp[i][j] = Math.max(dp[i-1][j],dp[i][j-1]) + map[i][j];
+                    }
+                }
             }
-            k++;
         }
+//        for(int i=0;i<n;i++){
+//            for(int j=0;j<m;j++){
+//                System.out.print(dp[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
+        System.out.println(dp[n-1][m-1]);
     }
 }
