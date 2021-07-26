@@ -1,5 +1,4 @@
 import java.util.*;
-import java.math.*;
 
 public class PopUpStore {
     public static void main(String[] args){
