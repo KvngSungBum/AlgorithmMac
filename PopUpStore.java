@@ -42,5 +42,6 @@ public class PopUpStore {
 //            System.out.println();
 //        }
         System.out.println(dp[n-1][m-1]);
+        System.out.println("수정");
     }
 }
