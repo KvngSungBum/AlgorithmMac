@@ -11,6 +11,8 @@ public class Page311 {
         for(int i=0;i<n;i++){
             fear[i] = sc.nextInt();
         }
+        sc.close();
+        //sort
         for(int i=0;i<fear.length;i++){
             for(int j=0;j<fear.length-i-1;j++){
                 if(fear[j]>fear[j+1]){
