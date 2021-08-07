@@ -40,8 +40,5 @@ public class Page314 {
         }
         Collections.sort(minimumAvailable);
         System.out.println(minimumAvailable.get(0));
-//        for(int i=0;i<available.size();i++){
-//            System.out.println(available.get(i));
-//        }
     }
 }
