@@ -8,58 +8,28 @@ public class Page313 {
         String number = sc.nextLine(); //문자열로 숫자 입력받음
 
         int[] source = new int[number.length()]; // 0과 1이 저장되어 있는 배열(int형)
-        int count_zero = 0; //0의 개수
-        int count_one=0; //1의 개수
+
         for(int i=0;i<number.length();i++){
             source[i] = Integer.parseInt(String.valueOf(number.charAt(i)));
-            System.out.println(source[i]);
-            if(source[i] == 1){
-                count_one++;
-            }else if(source[i] == 0){
-                count_zero++;
-            }
         }//문자열로 입력을 정수형 배열로 전환
         sc.close();
 
-        //정상 입력 확인과 0,1 개수 확인
-        System.out.printf("%d %d", count_one, count_zero);
-        //Problem Solving
+        int count0=0, count1=0;//count0은 0에서 1로, count1은 1에서 0으로
+        if(source[0]==0)
+            count0++;
+        else
+            count1++;
 
-        int zero_count=0;
-        int one_count=0;
-
-        int iCheck =0, jCheck=0;
-        while(true){
-            if(source[iCheck] ==0 && iCheck<source.length){
-                while(source[iCheck+jCheck]!=0){
-                    jCheck++;
-                }
-                zero_count++;
-                iCheck=jCheck;
+        for(int i=1;i<source.length-1;i++){
+            if(source[i] != source[i+1]){
+                if(source[i+1] == 1)
+                    count1++;
+                else
+                    count0++;
             }
-            else if(source[iCheck]==1 && iCheck<source.length)
-                iCheck++;
-            else if(iCheck == source.length)
-                break;
         }
 
-
-
-        while(true){
-            if(source[iCheck] ==1 && iCheck<source.length){
-                while(source[iCheck+jCheck]!=0){
-                    jCheck++;
-                }
-                one_count++;
-                iCheck=jCheck;
-            }
-            else if(source[iCheck]==0 && iCheck<source.length)
-                iCheck++;
-            else if(iCheck == source.length)
-                break;
-        }
-
-        int result = Math.min(one_count, zero_count);
+        int result = Math.min(count0, count1);
         System.out.println(result);
     }
 }
