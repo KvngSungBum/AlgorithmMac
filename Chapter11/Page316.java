@@ -6,19 +6,24 @@ public class Page316 {
     public static int solution(int[] food_times, long k){
         int answer = 0;
         int status=0;
+        int flag =0;
 
-        while(status ==k){
+        while(status == k){
             if(food_times[answer]!=0){
                 food_times[answer] --;
+                if(food_times[answer]==0){
+                    flag++;
+                }
                 answer = (answer+1)% food_times.length;
                 status++;
             }
-            else{
+            else if(food_times[answer]==0){
                 answer = (answer+1)% food_times.length;
                 status++;
             }
-
         }
+        if(flag == food_times.length)
+            answer=-1;
         answer = answer+1;
         return answer;
     }
@@ -36,6 +41,5 @@ public class Page316 {
 
         int result = solution(food_times, k);
         System.out.println(result);
-
     }
 }
