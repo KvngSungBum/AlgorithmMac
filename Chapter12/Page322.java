@@ -11,13 +11,18 @@ public class Page322 {
 
         for(int i=0;i<str.length();i++){
             str2[i] = String.valueOf(str.charAt(i));
-            //System.out.print(str2[i]);
         }
-
         Arrays.sort(str2);
 
-        for(int i=0;i<str.length();i++){
-            System.out.print(str2[i]);
+        int sum =0;
+        for(int i=0;i<str2.length;i++){
+            if((int)str2[i].charAt(0)>=48 && (int)str2[i].charAt(0)<=57){
+                sum += Integer.valueOf(str2[i]);
+            }
+            else{
+                System.out.print(str2[i]);
+            }
         }
+        System.out.print(sum);
     }
 }
