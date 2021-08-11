@@ -25,6 +25,8 @@ public class Page312 {
     private static int calculate(int[] arr) {
         int result = arr[0];
         for(int i=0;i<arr.length-1;i++){
+            if(arr[0] ==1 || arr[0]==2)
+                result= result + arr[i+1];
             if(arr[i] == 0){
                 result = result + arr[i + 1];
             }else{
