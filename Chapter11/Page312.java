@@ -24,16 +24,29 @@ public class Page312 {
 
     private static int calculate(int[] arr) {
         int result = arr[0];
-        for(int i=0;i<arr.length-1;i++){
-            if(arr[0] ==1 || arr[0]==2)
-                result= result + arr[i+1];
-            if(arr[i] == 0){
-                result = result + arr[i + 1];
-            }else{
-                if(arr[i+1]==0){
-                    result = result + arr[i+1];
+        if (arr[0] == 1 || arr[0] == 2) {
+            result = result +arr[1];
+            for(int i=1;i<arr.length-1;i++){
+                if(arr[i] == 0){
+                    result = result + arr[i + 1];
                 }else{
-                    result = result * arr[i + 1];
+                    if(arr[i+1]==0){
+                        result = result + arr[i+1];
+                    }else{
+                        result = result * arr[i + 1];
+                    }
+                }
+            }
+        }else{
+            for(int i=0;i<arr.length-1;i++){
+                if(arr[i] == 0){
+                    result = result + arr[i + 1];
+                }else{
+                    if(arr[i+1]==0){
+                        result = result + arr[i+1];
+                    }else{
+                        result = result * arr[i + 1];
+                    }
                 }
             }
         }
