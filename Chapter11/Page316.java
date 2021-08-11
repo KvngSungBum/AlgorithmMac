@@ -1,37 +1,32 @@
 package Chapter11;
 
 import java.util.*;
+import java.util.ArrayList;
 
 public class Page316 {
     public static int solution(int[] food_times, long k){
         int answer = 0;
         int status=0;
         int index = 0;
-        int flag = 0;
+        ArrayList<Integer> check = new ArrayList<>();
 
-        while(true) {
-            if (food_times[index] != 0 && status != k) {
+        while(status <=k){
+            if(food_times[index]!= 0){
                 food_times[index]--;
-                index = (index + 1) % food_times.length; // 순환시키기 위함
+                index = (index+1)% food_times.length;
+                answer = index;
                 status++;
-                flag = 0;
-            } else if (food_times[index] == 0 && status != k) {
-                index = (index + 1) % food_times.length; // 순환시키기 위함
-                for (int i = 0; i < food_times.length; i++) {
-                    if (food_times[i] != 0)
-                        flag = 1;
-                }
-                if(flag==0){
-                    answer = -1;
-                    break;
-                }
             }
             else{
-                answer = (index+1)%3;
+                if(!check.contains(index))
+                    check.add(index);
+                index = (index+1)%food_times.length;
+            }
+            if(check.size()== food_times.length){
+                answer = -1;
                 break;
             }
         }
-
         return answer;
     }
 
