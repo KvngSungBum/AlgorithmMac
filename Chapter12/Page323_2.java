@@ -32,12 +32,6 @@ public class Page323_2 {
                         temp_count=1;
                         indexStatus = index;
                     }
-//                    if(temp_count!=1){
-//                        compressedStr.append(temp_count);
-//                    }
-//                    compressedStr.append(temp1);
-//                    temp_count=1;
-//                    indexStatus = index;
                 }
             }
             for(int i=indexStatus+1;i+(2*size)<=s.length();i++){
