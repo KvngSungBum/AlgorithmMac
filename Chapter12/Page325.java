@@ -17,7 +17,6 @@ public class Page325 {
             System.out.println();
         }//expansion 함수 출력 확인
 
-        int count=0;
         int rotate_count=1;
         //확인 연산하기
         for(int ew = 0;ew<lock.length+key.length-1;ew++){
@@ -57,7 +56,7 @@ public class Page325 {
             .allMatch(a->a==1))
                 count++;
         }
-        if(count==3)
+        if(count==l)
             return true;
         else
             return false;
