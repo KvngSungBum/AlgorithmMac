@@ -1,6 +1,7 @@
 package Chapter12;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class Page332 {
@@ -12,6 +13,7 @@ public class Page332 {
 
         ArrayList<coordinate> home = new ArrayList<coordinate>();
         ArrayList<coordinate> shop = new ArrayList<coordinate>();
+        ArrayList<Integer> survived = new ArrayList<Integer>();
 
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -20,6 +22,9 @@ public class Page332 {
             sc.nextLine();
         }
         sc.close();
+
+        int minDistance = n*n;
+        int curDistance  =0;
 
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
@@ -40,10 +45,41 @@ public class Page332 {
         //치킨집 위치 확인 필요
         //집 위치 확인 필요
 
+//        for(int i=0;i<home.size();i++){
+//            for(int j=0;j<shop.size();j++){
+//                curDistance = distance(home.get(i), shop.get(j));
+//                minDistance = Math.min(curDistance, minDistance);
+//            }
+//            System.out.println("minDistance: " + i+" " +minDistance);
+//            survived.add(minDistance);
+//            minDistance = n*n;
+//        }
+
+        for(int i=0;i<shop.size();i++){
+            for(int j=0;j<home.size();j++){
+                curDistance = distance(home.get(j), shop.get(i));
+                minDistance = Math.min(curDistance, minDistance);
+            }
+            survived.add(minDistance);
+            minDistance = n* n;
+        }
+
+
+        Collections.sort(survived);
+        System.out.println("survived");
+        for(int i=0;i<survived.size();i++){
+            System.out.print(survived.get(i) + " ");
+        }
+        System.out.println();
+        int answer = 0;
+        for(int i=0;i<survived.size();i++){
+            answer += survived.get(i);
+        }
+        System.out.println(answer);
     }
 
     //Math.abs(value) 절댓값 반환
-    public int distance(coordinate home, coordinate shop) {
+    public static int distance(coordinate home, coordinate shop) {
         int distanceX = Math.abs(home.xpos - shop.xpos);
         int distanceY = Math.abs(home.ypos - shop.ypos);
         int totalDistance = distanceX + distanceY;
