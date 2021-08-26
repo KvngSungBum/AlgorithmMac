@@ -7,15 +7,14 @@ public class Page330 {
         int[][] answer = {};
         int xpos, ypos, gradient, install;
         int[][] wall = new int[n][n];//wall에 0이면 기둥 1이면 보, 2이면 공백
-        boolean installCodition;
-        //build_frame으로부터 데이터 읽어오기
+
         for(int i=0;i<n;i++){
             for(int j=0;j<n;j++){
                 wall[i][j] = 2;
             }
         }//우선 모든 칸이 공백이라고 초기화
 
-        for(int i=0;i< build_frame.length;i++){
+        for(int i=0;i< build_frame.length;i++){//build_frame으로부터 데이터 읽어오기
             xpos = build_frame[i][0];
             ypos = build_frame[i][1];
             gradient = build_frame[i][2];
@@ -25,31 +24,30 @@ public class Page330 {
                 if(install==0){//삭제냐
                     //여기에서 조건확인
                     if(checkCondition(wall, xpos, ypos, gradient, install)){
-                        //삭제 진행
+                        wall[xpos][ypos]=2;//삭제 진행
                     }else{
                         continue;
                     }
                 }else if(install == 1){//설치냐
                     //여기에서 조건확인
                     if (checkCondition(wall, xpos, ypos, gradient, install)) {
-                        //설치 진행
+                        wall[xpos][ypos]=0;//설치 진행
                     }else{
                         continue;
                     }
                 }
-
             }else if(gradient == 1){//보 설치
                 if(install==0){//삭제냐
                     //여기에서 조건확인
                     if(checkCondition(wall, xpos, ypos, gradient, install)){
-                        //삭제 진행
+                        wall[xpos][ypos]=2;//삭제 진행
                     }else{
                         continue;
                     }
                 }else if(install == 1){//설치냐
                     //여기에서 조건확인
                     if (checkCondition(wall, xpos, ypos, gradient, install)) {
-                        //설치 진행
+                        wall[xpos][ypos]=1;//설치 진행
                     }else{
                         continue;
                     }
@@ -68,7 +66,7 @@ public class Page330 {
             }else if(install == 1){//기둥 설치
                 if(ypos == 0){//바닥 위에 기둥 설치하는지
                     possible = true;
-                }else if(ypos>0){//바닥 외에 기둥 설치하는 경우
+                }else if(ypos>0 && ypos<wall.length){//바닥 외에 기둥 설치하는 경우
                     if(wall[xpos-1][ypos]==1 || wall[xpos][ypos]==1 || wall[xpos][ypos-1]==0){//좌 우 중에 보가 존재하거나 밑에 기둥이 존재한다면
                         possible = true;
                     }
@@ -76,12 +74,23 @@ public class Page330 {
             }
         }else if(gradient == 1){//보 설치 또는 삭제
             if(install == 0){//보 삭제
-
+                if ((wall[xpos - 1][ypos] == 0 && wall[xpos-1][ypos-1]==2) || (wall[xpos+1][ypos-1]==2 &&wall[xpos][ypos+1]==0)) {
+                    possible = false;
+                }else{
+                    possible = true;
+                }
             }else if(install == 1){//보 설치
-                if(wall[xpos-1][ypos]==0 || wall[xpos-1][ypos] == 1 || (wall[xpos-1][ypos] == 1 && wall[xpos+1][ypos]==1)){
+                if (ypos == 0 && ypos >=wall.length) {
+                    possible = false;
+                }
+                else if(wall[xpos-1][ypos]==0 || (wall[xpos-1][ypos] == 1 && wall[xpos+1][ypos]==1)){//왼쪽에 기둥이 있거나 양쪽에 보가 존재할때
                     possible = true;
                 }
             }
+        }
+        else{
+            System.out.println("Wrong gradient");
+            possible = false;
         }
         return possible;
     }
