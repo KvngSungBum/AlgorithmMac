@@ -34,19 +34,21 @@ public class Page327 {
 
         }//setting changing_direction
         sc.close();//입력부 종료
+        System.out.println("Input completed");
 
         int headWay=0;//headWay 0:우, 1:하, 2:좌, 3:상
         int time=0;
         int xpos = 0, ypos =0;
         snake.add(new snakeCoord(xpos, ypos));
-        while (true) {// 종료 조건: 벽에 부딫히거나 자기 자신에 부딪히는 경우
-            boolean endCondition = true;
+        boolean endCheck = true;
+        System.out.println("Just before entrance");
 
+        while (true) {// 종료 조건: 벽에 부딫히거나 자기 자신에 부딪히는 경우
             //headWay에 따른 방향 분기
             int tailIndex = snake.size()-1;
             if(headWay==0){
-                endCondition = endCondition(snake,map,xpos,ypos+1);
-                if (endCondition == false) {
+                endCheck = endCondition(snake,map,xpos,ypos+1);
+                if (endCheck == false) {
                     break;
                 }
                 if (map[xpos][ypos + 1] == 1) {
@@ -62,8 +64,8 @@ public class Page327 {
                     }
                 }
             } else if (headWay == 1) {
-                endCondition = endCondition(snake,map,xpos+1,ypos);
-                if (endCondition == false) {
+                endCheck = endCondition(snake,map,xpos+1,ypos);
+                if (endCheck == false) {
                     break;
                 }
                 if (map[xpos + 1][ypos] == 1) {
@@ -80,8 +82,8 @@ public class Page327 {
                     }
                 }
             } else if (headWay == 2) {
-                endCondition = endCondition(snake,map,xpos-1,ypos);
-                if (endCondition == false) {
+                endCheck = endCondition(snake,map,xpos-1,ypos);
+                if (endCheck == false) {
                     break;
                 }
                 if (map[xpos - 1][ypos] == 1) {
@@ -98,8 +100,8 @@ public class Page327 {
                     }
                 }
             } else if (headWay == 3) {
-                endCondition = endCondition(snake,map,xpos,ypos-1);
-                if (endCondition == false) {
+                endCheck = endCondition(snake,map,xpos,ypos-1);
+                if (endCheck == false) {
                     break;
                 }
                 if (map[xpos][ypos - 1] == 1) {
@@ -116,7 +118,6 @@ public class Page327 {
                     }
                 }
             }
-
             time++;
             checkDirection(turn_table, time, headWay);
         }
