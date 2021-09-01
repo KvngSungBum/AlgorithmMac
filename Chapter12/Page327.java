@@ -56,16 +56,23 @@ public class Page327 {
                     break;
                 }else{
                     if (map[xpos][ypos + 1] == 1) {
-                        snake.get(0).ypos = ypos+1;//대가리 이동
-                        map[xpos][ypos+1] = 0;//사과 지우기
+                        snakeCoord temp = new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos);
                         snake.add(new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos));//늘어났으니깐 꼬리 추가
-                        ypos++;
-                    }else{
-                        snake.get(0).ypos++;//대가리 꼬리 이동
                         for(int i=1;i<snake.size();i++){
                             snake.get(i).xpos = snake.get(i-1).xpos;
                             snake.get(i).ypos = snake.get(i-1).ypos;
                         }
+                        snake.get(0).ypos = ypos+1;//대가리 이동
+                        map[xpos][ypos+1] = 0;//사과 지우기
+                        snake.get(tailIndex).xpos = temp.xpos;
+                        snake.get(tailIndex).ypos = temp.ypos;
+                        ypos++;
+                    }else{
+                        for(int i=1;i<snake.size();i++){
+                            snake.get(i).xpos = snake.get(i-1).xpos;
+                            snake.get(i).ypos = snake.get(i-1).ypos;
+                        }
+                        snake.get(0).ypos++;//대가리 꼬리 이동
                         ypos++;
                     }
                 }
@@ -75,17 +82,23 @@ public class Page327 {
                     break;
                 }else{
                     if (map[xpos + 1][ypos] == 1) {
-                        snake.get(0).xpos = xpos+1;//대가리 이동
-
-                        map[xpos+1][ypos] = 0;//사과 지우기
+                        snakeCoord temp = new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos);
                         snake.add(new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos));//늘어났으니깐 꼬리 추가
-                        xpos++;
-                    } else {
-                        snake.get(0).xpos++;//대가리 꼬리 이동
                         for(int i=1;i<snake.size();i++){
                             snake.get(i).xpos = snake.get(i-1).xpos;
                             snake.get(i).ypos = snake.get(i-1).ypos;
                         }
+                        snake.get(0).xpos = xpos+1;//대가리 이동
+                        map[xpos+1][ypos] = 0;//사과 지우기
+                        snake.get(tailIndex).xpos = temp.xpos;
+                        snake.get(tailIndex).ypos = temp.ypos;
+                        xpos++;
+                    } else {
+                        for(int i=1;i<snake.size();i++){
+                            snake.get(i).xpos = snake.get(i-1).xpos;
+                            snake.get(i).ypos = snake.get(i-1).ypos;
+                        }
+                        snake.get(0).xpos++;//대가리 꼬리 이동
                         xpos++;
                     }
                 }
@@ -95,17 +108,23 @@ public class Page327 {
                     break;
                 }else{
                     if (map[xpos - 1][ypos] == 1) {
-                        snake.get(0).xpos = xpos-1;//대가리 이동
-
-                        map[xpos-1][ypos] = 0;//사과 지우기
+                        snakeCoord temp = new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos);
                         snake.add(new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos));//늘어났으니깐 꼬리 추가
-                        xpos--;
-                    } else {
-                        snake.get(0).xpos--;//대가리 꼬리 이동
                         for(int i=1;i<snake.size();i++){
                             snake.get(i).xpos = snake.get(i-1).xpos;
                             snake.get(i).ypos = snake.get(i-1).ypos;
                         }
+                        snake.get(0).xpos = ypos-1;//대가리 이동
+                        map[xpos-1][ypos] = 0;//사과 지우기
+                        snake.get(tailIndex).xpos = temp.xpos;
+                        snake.get(tailIndex).ypos = temp.ypos;
+                        xpos--;
+                    } else {
+                        for(int i=1;i<snake.size();i++){
+                            snake.get(i).xpos = snake.get(i-1).xpos;
+                            snake.get(i).ypos = snake.get(i-1).ypos;
+                        }
+                        snake.get(0).xpos--;//대가리 꼬리 이동
                         xpos--;
                     }
                 }
@@ -115,17 +134,23 @@ public class Page327 {
                     break;
                 }else{
                     if (map[xpos][ypos - 1] == 1) {
-                        snake.get(0).ypos = ypos-1;//대가리 이동
-
-                        map[xpos][ypos-1] = 0;//사과 지우기
+                        snakeCoord temp = new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos);
                         snake.add(new snakeCoord(snake.get(tailIndex).xpos, snake.get(tailIndex).ypos));//늘어났으니깐 꼬리 추가
-                        ypos--;
-                    } else {
-                        snake.get(0).ypos--;//대가리 꼬리 이동
                         for(int i=1;i<snake.size();i++){
                             snake.get(i).xpos = snake.get(i-1).xpos;
                             snake.get(i).ypos = snake.get(i-1).ypos;
                         }
+                        snake.get(0).ypos = ypos-1;//대가리 이동
+                        map[xpos][ypos-1] = 0;//사과 지우기
+                        snake.get(tailIndex).xpos = temp.xpos;
+                        snake.get(tailIndex).ypos = temp.ypos;
+                        ypos--;
+                    } else {
+                        for(int i=1;i<snake.size();i++){
+                            snake.get(i).xpos = snake.get(i-1).xpos;
+                            snake.get(i).ypos = snake.get(i-1).ypos;
+                        }
+                        snake.get(0).ypos--;//대가리 꼬리 이동
                         ypos--;
                     }
                 }
@@ -144,19 +169,12 @@ public class Page327 {
             result = false;//이동할 칸이 맵을 벗어나는 경우
         else if(xpos<0 || ypos<0)
             result = false;
-
         for(int i=0;i<snake.size();i++){
             if(snake.get(i).xpos == temp.xpos && snake.get(i).ypos == temp.ypos){
                 System.out.println("crash");
                 result = false;
             }
         }
-//        else if(snake.contains(new snakeCoord(xpos,ypos))){
-//            System.out.println("xpos = " + xpos);
-//            System.out.println("ypos = " + ypos);
-//            result =false;
-//        }
-        //이동할 칸에 뱀의 몸통이 있는 경우
         return result;
     }
 
