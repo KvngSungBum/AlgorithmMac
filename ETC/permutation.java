@@ -1,3 +1,5 @@
+package ETC;
+
 public class permutation {
     static void permutation(int[] arr, int depth, int n, int r) {
         if (depth == r) {
